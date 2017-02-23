@@ -15,7 +15,9 @@
         <script src="lib/dat.gui.js"></script>
         <script>
             // http://xahlee.info/surface/breather_p/breather_p.html
-            var chart = echarts.init(document.getElementById('main'));
+            var chart = echarts.init(document.getElementById('main'), null, {
+                devicePixelRatio: 1
+            });
 
             var sin = Math.sin;
             var cos = Math.cos;
