@@ -16,7 +16,6 @@
         <script>
             // http://xahlee.info/surface/breather_p/breather_p.html
             var chart = echarts.init(document.getElementById('main'), null, {
-                devicePixelRatio: 1
             });
 
             var sin = Math.sin;
@@ -260,6 +259,7 @@
 
             var config = {
                 equation: parametricSurfaceEquations[0].name,
+                bloom: true,
                 wireframeColor: '#333',
                 wireframeWidth: 1,
                 uMin: 0,
@@ -341,6 +341,15 @@
             update();
 
             var gui = new dat.GUI();
+            gui.add(config, 'bloom').onChange(function () {
+                chart.setOption({
+                    grid3D: [{
+                        postEffect: {
+                            enable: config.bloom
+                        }
+                    }]
+                })
+            });
             gui.add(config, 'equation', parametricSurfaceEquations.map(function (equation) {
                 return equation.name
             })).onChange(function () {
