@@ -5,14 +5,32 @@
         <title>Parametric Surfaces Fun - ECHARTS-GL</title>
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
         <meta name="apple-mobile-web-app-capable" content="yes"> <!-- Fullscreen Landscape on iOS -->
+        <link rel="stylesheet" href="lib/codemirror.css">
+        <link rel="stylesheet" href="lib/base16-dark.css">
         <link rel="stylesheet" href="./common.css">
     </head>
     <body>
         <div id="main"></div>
+        <div id="equations">
+            <div>
+                <h5>x</h5>
+                <div class="code" id="equation-x"></div>
+            </div>
+            <div>
+                <h5>y</h5>
+                <div class="code" id="equation-y"></div>
+            </div>
+            <div>
+                <h5>z</h5>
+                <div class="code" id="equation-z"></div>
+            </div>
+        </div>
         <script src="lib/echarts.min.js"></script>
         <script src="lib/echarts-gl.js"></script>
         <script src="lib/jquery.min.js"></script>
         <script src="lib/dat.gui.js"></script>
+        <script src="lib/codemirror.js"></script>
+        <script src="lib/javascript.js"></script>
         <script>
             // http://xahlee.info/surface/breather_p/breather_p.html
             var chart = echarts.init(document.getElementById('main'), null, {
@@ -63,34 +81,34 @@
                         step: 0.5
                     },
                     x: function (u, v) {
-                        var aa = 0.4;
-                        var r = 1 - aa * aa;
-                        var w = sqrt(r);
-                        var denom = aa * (pow(w * cosh(aa * u), 2) + aa * pow(sin(w * v), 2))
-                        return -u + (2 * r * cosh(aa * u) * sinh(aa * u) / denom);
+var aa = 0.4;
+var r = 1 - aa * aa;
+var w = sqrt(r);
+var denom = aa * (pow(w * cosh(aa * u), 2) + aa * pow(sin(w * v), 2))
+return -u + (2 * r * cosh(aa * u) * sinh(aa * u) / denom);
                     },
                     y: function (u, v) {
-                        var aa = 0.4;
-                        var r = 1 - aa * aa;
-                        var w = sqrt(r);
-                        var denom = aa * (pow(w * cosh(aa * u), 2) + aa * pow(sin(w * v), 2))
-                        return 2 * w * cosh(aa * u) * (-(w * cos(v) * cos(w * v)) - (sin(v) * sin(w * v))) / denom;
+var aa = 0.4;
+var r = 1 - aa * aa;
+var w = sqrt(r);
+var denom = aa * (pow(w * cosh(aa * u), 2) + aa * pow(sin(w * v), 2))
+return 2 * w * cosh(aa * u) * (-(w * cos(v) * cos(w * v)) - (sin(v) * sin(w * v))) / denom;
                     },
                     z: function (u, v) {
-                        var aa = 0.4;
-                        var r = 1 - aa * aa;
-                        var w = sqrt(r);
-                        var denom = aa * (pow(w * cosh(aa * u), 2) + aa * pow(sin(w * v), 2))
-                        return  2 * w * cosh(aa * u) * (-(w * sin(v) * cos(w * v)) + (cos(v) * sin(w * v))) / denom
+var aa = 0.4;
+var r = 1 - aa * aa;
+var w = sqrt(r);
+var denom = aa * (pow(w * cosh(aa * u), 2) + aa * pow(sin(w * v), 2))
+return  2 * w * cosh(aa * u) * (-(w * sin(v) * cos(w * v)) + (cos(v) * sin(w * v))) / denom
                     }
                 },
 
                 {
                     name: 'Klein Bottle',
                     u: {
-                        min: 0,
-                        max: PI * 2,
-                        step: PI / 20
+                min: 0,
+                max: PI * 2,
+                step: PI / 20
                     },
                     v: {
                         min: 0,
@@ -98,16 +116,16 @@
                         step: PI / 20
                     },
                     x: function (u, v) {
-                        var r = 3;
-                        return (r + cos(v / 2) * sin(u) - sin(v / 2) * sin(2 * u)) * cos(v)
+var r = 3;
+return (r + cos(v / 2) * sin(u) - sin(v / 2) * sin(2 * u)) * cos(v)
                     },
                     y: function (u, v) {
-                        var r = 3;
-                        return (r + cos(v / 2) * sin(u) - sin(v / 2) * sin(2 * u)) * sin(v)
+var r = 3;
+return (r + cos(v / 2) * sin(u) - sin(v / 2) * sin(2 * u)) * sin(v)
                     },
                     z: function (u, v) {
-                        var r = 3;
-                        return sin(v / 2) * sin(u) + cos(v / 2) * sin(2 * u)
+var r = 3;
+return sin(v / 2) * sin(u) + cos(v / 2) * sin(2 * u)
                     }
                 },
 
@@ -124,25 +142,25 @@
                         step: Math.PI / 40
                     },
                     x: function (u, v) {
-                        var x = Math.sin(v) * Math.sin(u);
-                        var y = Math.sin(v) * Math.cos(u);
-                        var z = Math.cos(v);
-                        delta = sin(20 * x) + sin(20 * y) + sin(20 * z);
-                        return x * (1 + delta * 0.03);
+var x = Math.sin(v) * Math.sin(u);
+var y = Math.sin(v) * Math.cos(u);
+var z = Math.cos(v);
+delta = sin(20 * x) + sin(20 * y) + sin(20 * z);
+return x * (1 + delta * 0.03);
                     },
                     y: function (u, v) {
-                        var x = Math.sin(v) * Math.sin(u);
-                        var y = Math.sin(v) * Math.cos(u);
-                        var z = Math.cos(v);
-                        delta = sin(20 * x) + sin(20 * y) + sin(20 * z);
-                        return y * (1 + delta * 0.03);
+var x = Math.sin(v) * Math.sin(u);
+var y = Math.sin(v) * Math.cos(u);
+var z = Math.cos(v);
+delta = sin(20 * x) + sin(20 * y) + sin(20 * z);
+return y * (1 + delta * 0.03);
                     },
                     z: function (u, v) {
-                        var x = Math.sin(v) * Math.sin(u);
-                        var y = Math.sin(v) * Math.cos(u);
-                        var z = Math.cos(v);
-                        delta = sin(20 * x) + sin(20 * y) + sin(20 * z);
-                        return z * (1 + delta * 0.03);
+var x = Math.sin(v) * Math.sin(u);
+var y = Math.sin(v) * Math.cos(u);
+var z = Math.cos(v);
+delta = sin(20 * x) + sin(20 * y) + sin(20 * z);
+return z * (1 + delta * 0.03);
                     }
                 },
 
@@ -159,13 +177,13 @@
                         step: 0.2
                     },
                     x: function (u, v) {
-                        return (1 + v / 2 * cos(u / 2)) * cos(u);
+return (1 + v / 2 * cos(u / 2)) * cos(u);
                     },
                     y: function (u, v) {
-                        return (1 + v / 2 * cos(u / 2)) * sin(u);
+return (1 + v / 2 * cos(u / 2)) * sin(u);
                     },
                     z: function (u, v) {
-                        return v / 2 * sin(u / 2);
+return v / 2 * sin(u / 2);
                     }
                 }
             ];
@@ -305,6 +323,10 @@
                 chart.resize();
             });
 
+            function getFunctionBody(func) {
+                var str = func.toString();
+                return str.substring(str.indexOf("{") + 1, str.lastIndexOf("}")).trim();
+            }
             function update() {
                 var equation = parametricSurfaceEquations[currentIndex];
                 chart.setOption({
@@ -324,17 +346,15 @@
                 config.vMax = equation.v.max;
                 config.vStep = equation.v.step;
 
-                function getFunctionBody(func) {
-                    var str = func.toString();
-                    return str.substring(str.indexOf("{") + 1, str.lastIndexOf("}")).trim();
-                }
-                config.x = getFunctionBody(equation.x);
-                config.y = getFunctionBody(equation.y);
-                config.z = getFunctionBody(equation.z);
                 if (gui) {
                     for (var i in gui.__controllers) {
                         gui.__controllers[i].updateDisplay();
                     }
+                }
+                if (equationEditors) {
+                    ['x', 'y', 'z'].forEach(function (dim) {
+                        equationEditors[dim].setValue(getFunctionBody(equation[dim]));
+                    });
                 }
             }
 
@@ -367,19 +387,26 @@
             ['uStep', 'vStep'].forEach(function (key) {
                 gui.add(config, key, 0.01, 1).step(0.01).onChange(changeParameter);
             });
+
+            var equationEditors = {};
             ['x', 'y', 'z'].forEach(function (key) {
-                gui.add(config, key).onChange(function () {
+                var editor = equationEditors[key] = new CodeMirror($('#equation-' + key)[0], {
+                    theme: 'base16-dark',
+                    mode: 'javascript',
+                    lineWrapping: true,
+                    value: getFunctionBody(parametricSurfaceEquations[currentIndex][key])
+                });
+
+                editor.on('change', function () {
                     var equation = {};
-                    ['x', 'y', 'z'].forEach(function (dim) {
-                        var func = new Function('u', 'v', config[dim]);
-                        equation[dim] = func;
-                    });
+                    var func = new Function('u', 'v', editor.getValue());
+                    equation[key] = func;
                     chart.setOption({
                         series: [{
                             parametricSurfaceEquation: equation
                         }]
                     });
-                });
+                })
             });
 
             $('#main').on('mousewheel', function (e) {

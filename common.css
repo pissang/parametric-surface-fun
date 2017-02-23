@@ -5,6 +5,7 @@ body {
     background: url(img/bg.jpg);
     background-size: 100% 100%;
     margin: 0;
+    overflow: hidden;
 }
 #main {
     position: absolute;
@@ -19,4 +20,50 @@ body {
     top: 10px;
     left: 10px;
     z-index: 1000;
+}
+
+#equations {
+    position: absolute;
+    right: 10px;
+    top: 310px;
+}
+
+#equations>div {
+    margin-top: 4px;
+    background: #383838;
+    border-radius: 4px;
+    padding: 2px 1px;
+}
+#equations h5 {
+    margin: 0px 5px;
+    color: #aaa;
+}
+#equations .code {
+    height: 50px;
+    width: 250px;
+}
+.CodeMirror {
+    height: 50px;
+}
+
+::-webkit-scrollbar {
+  height:8px;
+  width:8px;
+  transition:all 0.3s ease-in-out;
+  border-radius:2px;
+}
+
+::-webkit-scrollbar-button {
+  display:none;
+}
+
+::-webkit-scrollbar-thumb {
+  width:8px;
+  min-height:15px;
+  background:rgba(50, 50, 50, 0.6) !important;
+  transition:all 0.3s ease-in-out;border-radius:2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background:rgba(0, 0, 0, 0.5) !important;
 }
