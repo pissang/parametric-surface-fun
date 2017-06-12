@@ -224,7 +224,8 @@ return v / 2 * sin(u / 2);
                         enable: true,
                         SSAO: {
                             enable: true,
-                            radius: 4
+                            radius: 4,
+                            intensity: 1.5
                         },
                         depthOfField: {
                             enable: true,
@@ -291,8 +292,10 @@ return v / 2 * sin(u / 2);
                 chart.setOption({
                     series: [{
                         wireframe: {
-                            lineColor: config.wireframeColor,
-                            lineWidth: config.wireframeWidth
+                            lineStyle: {
+                                color: config.wireframeColor,
+                                width: config.wireframeWidth
+                            }
                         }
                     }]
                 });
